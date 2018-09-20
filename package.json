@@ -30,7 +30,8 @@
     "webpack": "^4.12.2",
     "webpack-cli": "^3.0.8",
     "webpack-notifier": "^1.6.0",
-    "worker-plugin": "^1.0.0"
+    "worker-plugin": "^1.0.0",
+    "workerize-loader": "^1.0.4"
   },
   "scripts": {
     "test": "jest",

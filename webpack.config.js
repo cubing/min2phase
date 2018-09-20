@@ -24,8 +24,11 @@ module.exports = {
   module: {
     rules: [
       {
-        loader: 'babel-loader',
-        options: {"presets": ["env"]}
+        test: /\.worker\.ts$/,
+        use: [{
+          loader: 'workerize-loader',
+          options: {inline: true}
+        }, 'ts-loader'],
       },
       {
         test: /\.ts$/,
