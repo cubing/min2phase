@@ -3,12 +3,11 @@ import {Transformation} from "kpuzzle"
 import {Min2PhaseSolver} from "./min2phase-solver"
 import {initialize, solve} from "./min2phase-wrapper"
 
-
-export const onThread: Min2PhaseSolver = {
-  initialize: async function(): Promise<void> {
+export class OnThreadMin2Phase implements Min2PhaseSolver {
+  async initialize(): Promise<void> {
     return initialize();
-  },
-  solve: async function(state: Transformation): Promise<Sequence> {
+  }
+  async solve(state: Transformation): Promise<Sequence> {
     return solve(state);
   }
 }
