@@ -1113,7 +1113,19 @@ var valid2 = 0;
 var solution = "";
 var useSeparator = false;
 
-function Solve(c) {
+function checkAbort(abortSignal) {
+	return new Promise(function(resolve, reject) {
+		try {
+			setTimeout(function() {
+				resolve(abortSignal.aborted);
+			});
+		} catch (e) {
+			reject(e);
+		}
+	})
+}
+
+async function Solve(c, abortSignal) {
 	c.temps = new CubieCube();
 	for (var i=0; i<6; i++) {
 		twist[i] = c.getTwistSym();
@@ -1142,6 +1154,9 @@ function Solve(c) {
 	for (length1=0; length1<sol; length1++) {
 		maxlength2 = Math.min(sol/2+1, sol-length1);
 		for (urfidx=0; urfidx<6; urfidx++) {
+			if (await checkAbort()) {
+				return "Aborted";
+			}
 			corn[0] = corn0[urfidx];
 			csym[0] = csym0[urfidx];
 			mid3[0] = mid30[urfidx];
